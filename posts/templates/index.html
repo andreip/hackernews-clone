@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container posts">
+
+	{% if posts %}
+		<ul class="list-group">
+		{% for post in posts %}
+			<li class="list-group-item">
+				<span class="badge" style="float: left; margin-right: 10px;">{{ post.upvotes }}</span>
+				<a style="text-decoration: none;" href="{{ post.url }}">{{ post.title }} {% if post.domain %}({{ post.domain }}){% endif %}</a>
+			</li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<span>No posts :(</span>
+	{% endif %}
+</div>
+
+{% endblock %}
