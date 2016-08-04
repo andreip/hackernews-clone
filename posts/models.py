@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+from django.core.urlresolvers import reverse
+from django.utils.functional import cached_property
 from django.db import models
 
 from utils.models import TimeStampedModel
@@ -14,3 +16,9 @@ class Post(TimeStampedModel):
 
     class Meta:
         ordering = ('-upvotes', '-created')
+
+    @cached_property
+    def post_url(self):
+        if self.url:
+            return self.url
+        return reverse('posts:post-detail', args=(self.pk,))
