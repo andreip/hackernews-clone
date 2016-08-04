@@ -8,8 +8,16 @@
 	<ul class="list-group">
 	{% for post in object_list %}
 		<li class="list-group-item">
-			<span class="badge" style="float: left; margin-right: 10px;">{{ post.upvotes }}</span>
-			<a style="text-decoration: none;" href="{{ post.url }}">{{ post.title }} ({{ post.url|domain }})</a>
+			<div class="row">
+				<span class="badge" style="float: left; margin-right: 10px;">{{ post.upvotes }}</span>
+				<a style="text-decoration: none;" href="{{ post.post_url }}">{{ post.title }} ({{ post.url|domain }})</a>
+			</div>
+			<div style="padding-left: 50px" class="row options">
+				<p>
+					{{ post.upvotes }} points by <a href='#'>{{ post.author.username }}</a> {{ post.created }}
+					| <a href="{% url 'posts:post-detail' post.pk %}">see comments</a>
+				</p>
+			</div>
 		</li>
 	{% empty %}
 		<li><span>No posts :(</span></li>

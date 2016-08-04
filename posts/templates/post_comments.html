@@ -1,0 +1,11 @@
+<ul class="list-group">
+{% for comment in object.comments.all %}
+	<li class="list-group-item">
+		<p>{{ comment.author }} {{ comment.created }}</p>
+		<p>{{ comment.text }}</p>
+		<a href='#'>reply</a>
+
+		{% include 'post_comments.html' with object=comment %}
+	</li>
+{% endfor %}
+</ul>

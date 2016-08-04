@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load post_extras %}
+
+{% block content %}
+
+<div class="container">
+
+	<div class="post">
+		<div class="row">
+			<a href="{{ post.post_url }}">{{ object.title }} ({{ object.url|domain }})</a>
+		</div>
+		<div class="row">
+			<p>{{ object.upvotes }} points by {{ object.author.name }} {{ object.created }}</p>
+		</div>
+
+		{% if post.text %}
+			<p>{{ post.text }}</p>
+		{% endif %}
+	</div>
+
+	{% include 'post_comments.html' with object=object %}
+</div>
+
+{% endblock %}
